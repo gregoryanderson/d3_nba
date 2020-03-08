@@ -49,23 +49,24 @@
         <section class="players--player">
           <h2 id="players--name-one"></h2>
           <h3 id="players--team-one"></h3>
-          <canvas id="players--p1-bar"></canvas>
+          <section class="players--p1-bar"></section>
           <h4>Availability</h4>
-          <canvas id="players--p1-pie"></canvas>
+          <svg class="players--p1-pie"></svg>
         </section>
         <section class="players--player">
           <h2 id="players--name-two"></h2>
           <h3 id="players--team-two"></h3>
-          <canvas id="players--p2-bar"></canvas>
+          <section class="players--p2-bar"></section>
           <h4>Availability</h4>
-          <canvas id="players--p2-pie"></canvas>
+          <section class="players--p2-pie"></section>
         </section>
       </div>
       <div id="radar__div">
         <h2>Head-To-Head</h2>
-        <canvas id="radar"></canvas>
+        <svg class="radar"></svg>
       </div>
     </main>
   </body>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
 </html>
