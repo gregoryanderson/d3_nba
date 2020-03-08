@@ -1,7 +1,7 @@
 import $ from "jquery";
 import Chart from "chart.js";
 import "./css/base.scss";
-import makePie from "./pieChart";
+import makeSpider from "./spiderChart";
 import * as d3 from "d3";
 
 $("#players__div").hide();
@@ -9,7 +9,6 @@ $("#radar__div").hide();
 
 $("#submit-button").on("click", function(e) {
   e.preventDefault();
-  console.log("click");
 
   var playerOneFirstName = $("#left__first-name").val();
   var playerOneLastName = $("#left__last-name").val();
@@ -46,7 +45,6 @@ $("#submit-button").on("click", function(e) {
 });
 
 const displayPlayers = playerData => {
-  console.log(playerData);
   $("#form").hide();
   $("#players__div").show();
   $("#radar__div").show();
@@ -81,13 +79,9 @@ const displayPlayers = playerData => {
     .enter()
     .append("rect")
     .attr("y", function(d) {
-      // return svgHeight - d;
-      console.log(d);
       return svgHeight1 - d * 4;
     })
     .attr("height", function(d) {
-      console.log(d);
-      console.log(d * 3);
       return d * 4;
     })
     .attr("fill", function(d) {
@@ -142,13 +136,9 @@ const displayPlayers = playerData => {
     .enter()
     .append("rect")
     .attr("y", function(d) {
-      // return svgHeight - d;
-      console.log(d);
       return svgHeight1 - d * 4;
     })
     .attr("height", function(d) {
-      console.log(d);
-      console.log(d * 3);
       return d * 4;
     })
     .attr("fill", function(d) {
@@ -244,7 +234,7 @@ const displayPlayers = playerData => {
     })
     .attr("d", arc4);
 
-  makePie();
+  makeSpider(playerData);
 
   // svg
   //   .selectAll("rect")
