@@ -1,8 +1,6 @@
 import * as d3 from "d3";
 
 const makePie = playerData => {
-  console.log(playerData);
-  // var data = [];
 
   let data = [
     {

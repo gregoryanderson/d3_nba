@@ -16,15 +16,13 @@ $("#submit-button").on("click", function(e) {
   var playerTwoLastName = $("#right__last-name").val();
 
   var playerOneStats = fetch(
-    // `https://nba-players.herokuapp.com/players-stats/${playerOneLastName}/${playerOneFirstName}`
-    `https://nba-players.herokuapp.com/players-stats/james/lebron`
+    `https://nba-players.herokuapp.com/players-stats/${playerOneLastName}/${playerOneFirstName}`
   ).then(function(response) {
     return response.json();
   });
 
   var playerTwoStats = fetch(
-    // `https://nba-players.herokuapp.com/players-stats/${playerTwoLastName}/${playerTwoFirstName}`
-    `https://nba-players.herokuapp.com/players-stats/tatum/jayson`
+    `https://nba-players.herokuapp.com/players-stats/${playerTwoLastName}/${playerTwoFirstName}`
   ).then(function(response) {
     return response.json();
   });
@@ -181,7 +179,7 @@ const displayPlayers = playerData => {
     .attr("transform", "translate(" + width3 / 2 + "," + height3 / 2 + ")");
 
   var color3 = d3.scaleOrdinal(["#4daf4a", "#377eb8"]);
-  
+
   var pie3 = d3.pie();
 
   var arc3 = d3
@@ -203,8 +201,24 @@ const displayPlayers = playerData => {
     })
     .attr("d", arc3);
 
+  var newarc3 = d3
+    .arc()
+    .innerRadius((2 * radius3) / 3)
+    .outerRadius(radius3);
+
+  arcs3
+    .append("text")
+    .attr("transform", function(d) {
+      return "translate(" + newarc3.centroid(d) + ")";
+    })
+    .attr("text-anchor", "middle")
+    .attr("fill", "black")
+    .text(function(d) {
+      return d.value + " games";
+    });
+
   var gamesPlayed2 = parseInt(playerData.playerTwo.games_played);
-  var gamesSat2 = 60 - gamesPlayed;
+  var gamesSat2 = 60 - gamesPlayed2;
   var dataset4 = [gamesPlayed2, gamesSat2];
 
   var svg4 = d3.select(".players--p2-pie").append("svg");
@@ -233,6 +247,22 @@ const displayPlayers = playerData => {
       return color4(i);
     })
     .attr("d", arc4);
+
+  var newarc4 = d3
+    .arc()
+    .innerRadius((2 * radius4) / 3)
+    .outerRadius(radius4);
+
+  arcs4
+    .append("text")
+    .attr("transform", function(d) {
+      return "translate(" + newarc4.centroid(d) + ")";
+    })
+    .attr("text-anchor", "middle")
+    .attr("fill", "black")
+    .text(function(d) {
+      return d.value + " games";
+    });
 
   makeSpider(playerData);
 
